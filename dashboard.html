@@ -1,0 +1,914 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HostelDayz - Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="css/fancybox.min.css">
+    
+    <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Custom Premium Styles for Dashboard -->
+    <style>
+      .card-premium {
+        background: #ffffff;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        margin-bottom: 30px;
+        overflow: hidden;
+      }
+      .card-premium:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+      .card-header-premium {
+        background: linear-gradient(135deg, #f5bc4b 0%, #d4951c 100%);
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 1.1rem;
+        border: none;
+        padding: 15px 20px;
+      }
+      .card-body-premium {
+        padding: 25px;
+      }
+      .stat-card {
+        border-radius: 12px;
+        color: #ffffff;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .stat-card:hover {
+        transform: translateY(-3px);
+      }
+      .stat-card-1 {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      }
+      .stat-card-2 {
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+      }
+      .stat-card-3 {
+        background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+      }
+      .stat-card-4 {
+        background: linear-gradient(135deg, #f5bc4b 0%, #e67e22 100%);
+      }
+      .stat-value {
+        font-size: 2.2rem;
+        font-weight: 700;
+        line-height: 1;
+        margin-top: 5px;
+      }
+      .stat-label {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.85;
+      }
+      .stat-icon {
+        font-size: 3rem;
+        opacity: 0.3;
+      }
+      .badge-custom {
+        padding: 8px 15px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 0.85rem;
+      }
+      .badge-pending {
+        background-color: #fef9e7;
+        color: #f39c12;
+        border: 1px solid #fbe7b2;
+      }
+      .badge-approved {
+        background-color: #eafaf1;
+        color: #2ecc71;
+        border: 1px solid #d4efdf;
+      }
+      .badge-cancelled {
+        background-color: #fdedec;
+        color: #e74c3c;
+        border: 1px solid #fadbd8;
+      }
+      .canteen-item-card {
+        border: 1px solid #eaeaea;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+      }
+      .canteen-item-card:hover {
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      }
+      .canteen-img-placeholder {
+        height: 140px;
+        background: #f8f9fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: #f5bc4b;
+        border-bottom: 1px solid #eee;
+      }
+      .canteen-body {
+        padding: 15px;
+      }
+      .canteen-title {
+        font-weight: 700;
+        font-size: 1rem;
+        margin-bottom: 5px;
+        color: #333;
+      }
+      .canteen-price {
+        font-weight: 700;
+        color: #d4951c;
+        font-size: 1.1rem;
+      }
+      .canteen-cat {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: #777;
+        letter-spacing: 0.5px;
+      }
+      .table-responsive {
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .table-custom thead {
+        background-color: #343a40;
+        color: white;
+      }
+      .table-custom th, .table-custom td {
+        padding: 15px;
+        vertical-align: middle;
+      }
+      .roommate-avatar {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: #f5bc4b;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-right: 15px;
+      }
+      .action-btn {
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
+        padding: 6px 12px;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+      }
+      .btn-logout {
+        border: 2px solid #f5bc4b;
+        color: #f5bc4b;
+        background: transparent;
+        padding: 6px 18px;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: all 0.3s;
+      }
+      .btn-logout:hover {
+        background: #f5bc4b;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <header class="site-header js-site-header">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index.html">HostelDayz</a></div>
+          <div class="col-6 col-lg-8">
+            <div class="site-menu-toggle js-site-menu-toggle" data-aos="fade">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <!-- END menu-toggle -->
+
+            <div class="site-navbar js-site-navbar">
+              <nav role="navigation">
+                <div class="container">
+                  <div class="row full-height align-items-center">
+                    <div class="col-md-6 mx-auto">
+                      <ul class="list-unstyled menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="rooms.html">Hostels</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li class="active"><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="#" id="navLogout">Logout</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- END head -->
+
+    <section class="site-hero inner-page overlay" style="background-image: url(images/sliderjj.jpg)" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row site-hero-inner justify-content-center align-items-center">
+          <div class="col-md-10 text-center" data-aos="fade">
+            <h1 class="heading mb-3" id="welcomeMessage">Hostel Dashboard</h1>
+            <ul class="custom-breadcrumbs mb-4">
+              <li><a href="index.html">Home</a></li>
+              <li>&bullet;</li>
+              <li>Dashboard</li>
+            </ul>
+            <button id="headerLogout" class="btn btn-logout mt-2">Log Out</button>
+          </div>
+        </div>
+      </div>
+
+      <a class="mouse smoothscroll" href="#next">
+        <div class="mouse-icon">
+          <span class="mouse-wheel"></span>
+        </div>
+      </a>
+    </section>
+    <!-- END section -->
+
+    <section class="section bg-light" id="next">
+      <div class="container">
+        <div id="alertPlaceholder" class="alert d-none" role="alert"></div>
+        
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="text-center py-5">
+          <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading dashboard data...</span>
+          </div>
+          <p class="mt-3 text-muted">Retrieving secured database data...</p>
+        </div>
+
+        <!-- Dashboard Wrapper (Injected via JS) -->
+        <div id="dashboardContent" style="display: none;"></div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="section footer-section">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-md-3 mb-5">
+            <ul class="list-unstyled link">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Terms &amp; Conditions</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Hostels</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3 mb-5">
+            <ul class="list-unstyled link">
+              <li><a href="#">About Hostels</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Canteen</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3 mb-5 pr-md-5 contact-info">
+            <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Address:</span> <span>Room 102, Iqbal Hostel <br>GC University Lahore, Katchery Road, Anarkali, Lahore, 54000</span></p>
+            <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Phone:</span> <span> (+92) 42 111 123 456</span></p>
+            <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span> infohosteldayz@gmail.com</span></p>
+          </div>
+          <div class="col-md-3 mb-5">
+            <p>Sign up for our newsletter</p>
+            <form action="#" class="footer-newsletter">
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email...">
+                <button type="submit" class="btn"><span class="fa fa-paper-plane"></span></button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row pt-5">
+          <p class="col-md-6 text-left">
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Developed by Fatima Rana, Juniad Hassan & Hadi Hassan
+          </p>
+          <p class="col-md-6 text-right social">
+            <a href="#"><span class="fa fa-tripadvisor"></span></a>
+            <a href="#"><span class="fa fa-facebook"></span></a>
+            <a href="#"><span class="fa fa-twitter"></span></a>
+            <a href="#"><span class="fa fa-linkedin"></span></a>
+            <a href="#"><span class="fa fa-vimeo"></span></a>
+          </p>
+        </div>
+      </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/jquery.fancybox.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script> 
+    <script src="js/jquery.timepicker.min.js"></script> 
+    <script src="js/main.js"></script>
+
+    <!-- Core Dynamic Dashboard Routing Logic -->
+    <script>
+      // Helper to read cookie
+      function getUserFromCookie() {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; user=`);
+        if (parts.length === 2) {
+          try {
+            return JSON.parse(decodeURIComponent(parts.pop().split(';').shift()));
+          } catch(e) {
+            return null;
+          }
+        }
+        return null;
+      }
+
+      // Check authorization
+      const user = getUserFromCookie();
+      if (!user) {
+        window.location.href = 'login.html';
+      } else {
+        // Customize greeting
+        document.getElementById('welcomeMessage').textContent = `Assalam-o-Alaikum, ${user.fullName}`;
+      }
+
+      // Handle Log Out
+      async function handleLogout() {
+        try {
+          const response = await fetch('/api/logout', { method: 'POST' });
+          const data = await response.json();
+          if (data.success) {
+            // Re-verify cookie removal
+            document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            window.location.href = 'login.html';
+          }
+        } catch (error) {
+          console.error('Logout error:', error);
+          window.location.href = 'login.html';
+        }
+      }
+
+      document.getElementById('headerLogout').addEventListener('click', handleLogout);
+      document.getElementById('navLogout').addEventListener('click', (e) => {
+        e.preventDefault();
+        handleLogout();
+      });
+
+      // Load Dashboard Data on start
+      $(document).ready(function() {
+        loadDashboard();
+      });
+
+      async function loadDashboard() {
+        $('#loadingSpinner').show();
+        $('#dashboardContent').hide();
+
+        try {
+          const response = await fetch('/api/dashboard');
+          const data = await response.json();
+
+          if (!data.success) {
+            showAlert('danger', data.message || 'Failed to authenticate dashboard session.');
+            $('#loadingSpinner').hide();
+            setTimeout(() => { window.location.href = 'login.html'; }, 2000);
+            return;
+          }
+
+          $('#loadingSpinner').hide();
+          const contentDiv = $('#dashboardContent');
+          contentDiv.empty();
+
+          // Render view based on role
+          if (data.role === 'Student') {
+            renderStudentView(data, contentDiv);
+          } else if (data.role === 'Warden') {
+            renderWardenView(data, contentDiv);
+          } else if (data.role === 'Admin') {
+            renderAdminView(data, contentDiv);
+          }
+
+          contentDiv.fadeIn(400);
+
+        } catch (error) {
+          console.error('Dashboard load error:', error);
+          $('#loadingSpinner').hide();
+          showAlert('danger', 'Error connecting to the Express SQL database. Please verify the backend service status.');
+        }
+      }
+
+      // Helper to show dismissible status alerts
+      function showAlert(type, message) {
+        const alertBox = $('#alertPlaceholder');
+        alertBox.className = `alert alert-${type}`;
+        alertBox.html(`<strong>Status:</strong> ${message}`);
+        alertBox.removeClass('d-none').addClass('show');
+        setTimeout(() => { alertBox.addClass('d-none').removeClass('show'); }, 5000);
+      }
+
+      // -------------------------------------------------------------
+      // STUDENT VIEW RENDERING
+      // -------------------------------------------------------------
+      function renderStudentView(data, container) {
+        let bookingHtml = '';
+        
+        if (data.booking) {
+          const b = data.booking;
+          const statusBadge = getStatusBadge(b.Status);
+          const formattedDate = new Date(b.BookingDate).toLocaleDateString('en-GB', {
+            day: 'numeric', month: 'short', year: 'numeric'
+          });
+
+          bookingHtml = `
+            <div class="card card-premium">
+              <div class="card-header-premium">Active Hostel Accommodation</div>
+              <div class="card-body-premium">
+                <div class="row align-items-center">
+                  <div class="col-md-8">
+                    <h3 class="h4 text-primary font-weight-bold mb-3">${b.HostelName}</h3>
+                    <p class="mb-2"><strong>Room Allocated:</strong> Room ${b.RoomNumber}</p>
+                    <p class="mb-2"><strong>Monthly Dues:</strong> PKR ${b.Price.toLocaleString()} / month</p>
+                    <p class="mb-2"><strong>Allotment Date:</strong> ${formattedDate}</p>
+                  </div>
+                  <div class="col-md-4 text-center mt-3 mt-md-0">
+                    <span class="d-block text-muted mb-2 text-uppercase font-weight-bold" style="font-size: 0.8rem; letter-spacing:1px;">Booking Status</span>
+                    ${statusBadge}
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        } else {
+          bookingHtml = `
+            <div class="card card-premium">
+              <div class="card-header-premium">Hostel Accommodation Status</div>
+              <div class="card-body-premium text-center py-5">
+                <span class="ion-ios-home h1 text-muted d-block mb-3"></span>
+                <h3 class="h4 font-weight-bold text-dark mb-2">No Active Booking Found</h3>
+                <p class="text-muted">You do not currently have an active hostel booking. Please visit the <a href="rooms.html">Hostels page</a> to reserve a room.</p>
+              </div>
+            </div>
+          `;
+        }
+
+        // Roommates section
+        let roommatesHtml = '';
+        if (data.booking && data.booking.Status === 'Approved') {
+          let listHtml = '';
+          if (data.roommates && data.roommates.length > 0) {
+            data.roommates.forEach(r => {
+              const initial = r.FullName.charAt(0).toUpperCase();
+              listHtml += `
+                <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
+                  <div class="roommate-avatar">${initial}</div>
+                  <div>
+                    <h5 class="mb-0 font-weight-bold text-dark" style="font-size: 1rem;">${r.FullName}</h5>
+                    <small class="text-muted"><span class="fa fa-phone mr-1"></span>${r.Phone} | <span class="fa fa-envelope mr-1"></span>${r.Email}</small>
+                  </div>
+                </div>
+              `;
+            });
+          } else {
+            listHtml = `
+              <div class="text-center py-4 text-muted">
+                <span class="fa fa-users d-block h3 mb-2 opacity-5"></span>
+                <p class="mb-0">You are currently the only approved occupant in this room.</p>
+              </div>
+            `;
+          }
+
+          roommatesHtml = `
+            <div class="card card-premium">
+              <div class="card-header-premium">My Roommates</div>
+              <div class="card-body-premium" style="max-height: 290px; overflow-y: auto;">
+                ${listHtml}
+              </div>
+            </div>
+          `;
+        } else {
+          roommatesHtml = `
+            <div class="card card-premium">
+              <div class="card-header-premium">My Roommates</div>
+              <div class="card-body-premium text-center py-5 text-muted">
+                <span class="fa fa-lock h2 d-block mb-2 opacity-5"></span>
+                <p class="mb-0">Roommate contact info will be unlocked as soon as your hostel booking is approved by the Warden.</p>
+              </div>
+            </div>
+          `;
+        }
+
+        // Append layout grid
+        const studentLayout = `
+          <div class="row">
+            <div class="col-lg-8">
+              ${bookingHtml}
+            </div>
+            <div class="col-lg-4">
+              ${roommatesHtml}
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-12">
+              <div class="card card-premium">
+                <div class="card-header-premium d-flex justify-content-between align-items-center">
+                  <span>GCU Lahori Canteen - Quick Ordering Portal</span>
+                  <span class="badge badge-warning text-white">Open (Fresh & Hot)</span>
+                </div>
+                <div class="card-body-premium">
+                  <div id="canteenOrderAlert" class="alert d-none" role="alert"></div>
+                  <div class="row" id="lahoriCanteenContainer">
+                    <div class="col-12 text-center py-4">
+                      <div class="spinner-border text-warning" role="status"></div>
+                      <p class="mt-2 text-muted">Loading today's Lahori menu specialties...</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        container.html(studentLayout);
+        loadStudentCanteenMenu();
+      }
+
+      // Fetch Canteen Items
+      async function loadStudentCanteenMenu() {
+        try {
+          const response = await fetch('/api/canteen');
+          const data = await response.json();
+          const target = $('#lahoriCanteenContainer');
+          
+          if (!data.success || !data.items || data.items.length === 0) {
+            target.html('<div class="col-12 text-center py-3 text-muted">Canteen menu is temporarily offline.</div>');
+            return;
+          }
+
+          target.empty();
+          const catIcons = {
+            'Mains': '🍲',
+            'Desserts': '🍧',
+            'Drinks': '🍹'
+          };
+
+          data.items.forEach(item => {
+            const icon = catIcons[item.Category] || '🍔';
+            const cardHtml = `
+              <div class="col-md-4 col-sm-6">
+                <div class="canteen-item-card bg-white">
+                  <div class="canteen-img-placeholder">
+                    ${icon}
+                  </div>
+                  <div class="canteen-body">
+                    <div class="d-flex justify-content-between align-items-start mb-1">
+                      <h4 class="canteen-title mb-0">${item.Name}</h4>
+                      <span class="badge badge-light canteen-cat">${item.Category}</span>
+                    </div>
+                    <p class="text-muted small mb-3">${item.Description}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <span class="canteen-price">PKR ${item.Price}</span>
+                      <button class="btn btn-primary btn-sm px-3" onclick="placeCanteenOrder(${item.ItemId}, '${item.Name}')">Order</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+            target.append(cardHtml);
+          });
+
+        } catch (error) {
+          console.error('Canteen load error:', error);
+          $('#lahoriCanteenContainer').html('<div class="col-12 text-center py-3 text-danger">Error fetching Canteen Database records.</div>');
+        }
+      }
+
+      // Place Canteen Order Mock Action
+      async function placeCanteenOrder(itemId, itemName) {
+        const alertDiv = $('#canteenOrderAlert');
+        alertDiv.removeClass('alert-danger alert-success d-none').addClass('alert-info').text(`Placing order for 1x ${itemName}...`);
+        
+        try {
+          const response = await fetch('/api/canteen/order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ itemId: itemId, quantity: 1 })
+          });
+          const result = await response.json();
+          
+          if (result.success) {
+            alertDiv.removeClass('alert-info').addClass('alert-success').html(`<strong>Bismillah!</strong> Your order for 1x <strong>${itemName}</strong> was successfully dispatched to the GCU Hostel Kitchen! It will be ready in 15 minutes.`);
+          } else {
+            alertDiv.removeClass('alert-info').addClass('alert-danger').text(result.message || 'Order booking failed.');
+          }
+        } catch (e) {
+          alertDiv.removeClass('alert-info').addClass('alert-danger').text('Canteen Server Connection Error.');
+        }
+
+        // Auto-dismiss alert after 6 seconds
+        setTimeout(() => { alertDiv.addClass('d-none'); }, 6000);
+      }
+
+      // -------------------------------------------------------------
+      // WARDEN VIEW RENDERING
+      // -------------------------------------------------------------
+      function renderWardenView(data, container) {
+        let bookingsRows = '';
+        
+        if (data.bookings && data.bookings.length > 0) {
+          data.bookings.forEach((b, index) => {
+            const statusBadge = getStatusBadge(b.Status);
+            const formattedDate = new Date(b.BookingDate).toLocaleDateString('en-GB', {
+              day: 'numeric', month: 'short', year: 'numeric'
+            });
+
+            // Action buttons based on status
+            let actions = '';
+            if (b.Status === 'Pending') {
+              actions = `
+                <button class="btn btn-success btn-sm action-btn mr-1" onclick="updateBookingStatus(${b.BookingId}, 'Approved')"><i class="fa fa-check mr-1"></i>Approve</button>
+                <button class="btn btn-danger btn-sm action-btn" onclick="updateBookingStatus(${b.BookingId}, 'Cancelled')"><i class="fa fa-times mr-1"></i>Cancel</button>
+              `;
+            } else if (b.Status === 'Approved') {
+              actions = `
+                <button class="btn btn-danger btn-sm action-btn" onclick="updateBookingStatus(${b.BookingId}, 'Cancelled')"><i class="fa fa-times mr-1"></i>Revoke/Cancel</button>
+              `;
+            } else if (b.Status === 'Cancelled') {
+              actions = `
+                <button class="btn btn-success btn-sm action-btn" onclick="updateBookingStatus(${b.BookingId}, 'Approved')"><i class="fa fa-check mr-1"></i>Re-Approve</button>
+              `;
+            }
+
+            bookingsRows += `
+              <tr>
+                <td><strong>#${b.BookingId}</strong></td>
+                <td>
+                  <div class="font-weight-bold text-dark">${b.StudentName}</div>
+                  <small class="text-muted">${b.StudentEmail} | ${b.StudentPhone}</small>
+                </td>
+                <td>
+                  <div>${b.HostelName}</div>
+                  <small class="text-primary font-weight-bold">Room ${b.RoomNumber}</small>
+                </td>
+                <td>${formattedDate}</td>
+                <td>${statusBadge}</td>
+                <td>${actions}</td>
+              </tr>
+            `;
+          });
+        } else {
+          bookingsRows = `
+            <tr>
+              <td colspan="6" class="text-center py-5 text-muted">
+                <span class="fa fa-clipboard d-block h2 opacity-5"></span>
+                No accommodation bookings have been filed yet.
+              </td>
+            </tr>
+          `;
+        }
+
+        const wardenLayout = `
+          <div class="card card-premium">
+            <div class="card-header-premium d-flex justify-content-between align-items-center">
+              <span>Warden Registry - Manage Student Bookings</span>
+              <span class="badge badge-light text-dark font-weight-bold" style="font-size: 0.8rem;">${data.bookings ? data.bookings.length : 0} Total Requests</span>
+            </div>
+            <div class="card-body-premium">
+              <div id="wardenActionAlert" class="alert d-none mb-3" role="alert"></div>
+              <div class="table-responsive">
+                <table class="table table-striped table-custom table-hover border">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Student Details</th>
+                      <th>Allotment Details</th>
+                      <th>Date Applied</th>
+                      <th>Status</th>
+                      <th>Oversight Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${bookingsRows}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        `;
+
+        container.html(wardenLayout);
+      }
+
+      // Warden Update Booking Status Endpoint Connection
+      async function updateBookingStatus(bookingId, action) {
+        const alertDiv = $('#wardenActionAlert');
+        alertDiv.removeClass('alert-danger alert-success d-none').addClass('alert-info').text('Updating database records, please wait...');
+
+        try {
+          const response = await fetch('/api/bookings/action', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ bookingId: bookingId, action: action })
+          });
+          const result = await response.json();
+
+          if (result.success) {
+            alertDiv.removeClass('alert-info').addClass('alert-success').html(`<strong>Database updated!</strong> Booking ID #${bookingId} has been successfully marked as <strong>${action}</strong>.`);
+            // Reload dashboard dynamically
+            setTimeout(() => { loadDashboard(); }, 1200);
+          } else {
+            alertDiv.removeClass('alert-info').addClass('alert-danger').text(result.message || 'Operation failed.');
+          }
+        } catch (e) {
+          alertDiv.removeClass('alert-info').addClass('alert-danger').text('Database connection timeout.');
+        }
+      }
+
+      // -------------------------------------------------------------
+      // ADMIN VIEW RENDERING
+      // -------------------------------------------------------------
+      function renderAdminView(data, container) {
+        const m = data.metrics;
+        
+        let bookingsRows = '';
+        if (data.bookings && data.bookings.length > 0) {
+          data.bookings.forEach(b => {
+            const statusBadge = getStatusBadge(b.Status);
+            const formattedDate = new Date(b.BookingDate).toLocaleDateString('en-GB', {
+              day: 'numeric', month: 'short', year: 'numeric'
+            });
+
+            bookingsRows += `
+              <tr>
+                <td><strong>#${b.BookingId}</strong></td>
+                <td class="font-weight-bold text-dark">${b.StudentName}</td>
+                <td>${b.HostelName} (Room ${b.RoomNumber})</td>
+                <td>PKR ${b.Price.toLocaleString()}</td>
+                <td>${formattedDate}</td>
+                <td>${statusBadge}</td>
+              </tr>
+            `;
+          });
+        } else {
+          bookingsRows = `
+            <tr>
+              <td colspan="6" class="text-center py-4 text-muted">No student applications logged in database.</td>
+            </tr>
+          `;
+        }
+
+        const adminLayout = `
+          <!-- Premium Metrics Row -->
+          <div class="row">
+            <div class="col-md-3 col-sm-6">
+              <div class="stat-card stat-card-1">
+                <div>
+                  <div class="stat-label">Total Hostels</div>
+                  <div class="stat-value">${m.totalHostels}</div>
+                </div>
+                <div class="stat-icon"><i class="fa fa-university"></i></div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="stat-card stat-card-2">
+                <div>
+                  <div class="stat-label">Total Rooms</div>
+                  <div class="stat-value">${m.totalRooms}</div>
+                </div>
+                <div class="stat-icon"><i class="fa fa-bed"></i></div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="stat-card stat-card-3">
+                <div>
+                  <div class="stat-label">Active Students</div>
+                  <div class="stat-value">${m.totalStudents}</div>
+                </div>
+                <div class="stat-icon"><i class="fa fa-users"></i></div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="stat-card stat-card-4">
+                <div>
+                  <div class="stat-label">Monthly Rev (PKR)</div>
+                  <div class="stat-value" style="font-size: 1.6rem; padding-top:8px;">${m.totalRevenue.toLocaleString()}</div>
+                </div>
+                <div class="stat-icon"><i class="fa fa-money"></i></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Secondary Metrics Bar -->
+          <div class="row mt-2 mb-4">
+            <div class="col-md-6">
+              <div class="card p-3 bg-white border d-flex flex-row justify-content-between align-items-center" style="border-radius:10px;">
+                <span class="font-weight-bold text-muted text-uppercase small">Approved Bookings</span>
+                <span class="badge badge-success px-3 py-2 font-weight-bold" style="font-size: 1rem; border-radius:30px;">${m.approvedBookings} Rooms</span>
+              </div>
+            </div>
+            <div class="col-md-6 mt-3 mt-md-0">
+              <div class="card p-3 bg-white border d-flex flex-row justify-content-between align-items-center" style="border-radius:10px;">
+                <span class="font-weight-bold text-muted text-uppercase small">Pending Applications</span>
+                <span class="badge badge-warning text-white px-3 py-2 font-weight-bold" style="font-size: 1rem; border-radius:30px;">${m.pendingBookings} Requests</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Audit Log Table -->
+          <div class="card card-premium">
+            <div class="card-header-premium d-flex justify-content-between align-items-center">
+              <span>HostelDayz Master Audit Log</span>
+              <div class="input-group input-group-sm" style="max-width: 250px;">
+                <input type="text" id="adminSearchInput" class="form-control" placeholder="Search student or hostel..." onkeyup="filterAdminTable()">
+                <div class="input-group-append">
+                  <span class="input-group-text bg-white border-left-0"><i class="fa fa-search text-muted"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body-premium">
+              <div class="table-responsive">
+                <table class="table table-striped table-custom table-hover border" id="adminAuditTable">
+                  <thead>
+                    <tr>
+                      <th>Booking ID</th>
+                      <th>Student</th>
+                      <th>Allotment details</th>
+                      <th>Monthly Price</th>
+                      <th>Application Date</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${bookingsRows}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        `;
+
+        container.html(adminLayout);
+      }
+
+      // Live search filtering for Admin
+      function filterAdminTable() {
+        const query = document.getElementById('adminSearchInput').value.toLowerCase();
+        const rows = document.querySelectorAll('#adminAuditTable tbody tr');
+        
+        rows.forEach(row => {
+          const text = row.textContent.toLowerCase();
+          if (text.includes(query)) {
+            row.style.display = '';
+          } else {
+            row.style.display = 'none';
+          }
+        });
+      }
+
+      // Status Badge Style Helper
+      function getStatusBadge(status) {
+        if (status === 'Approved') {
+          return '<span class="badge-custom badge-approved"><i class="fa fa-check-circle mr-1"></i>Approved</span>';
+        } else if (status === 'Pending') {
+          return '<span class="badge-custom badge-pending"><i class="fa fa-clock-o mr-1"></i>Pending</span>';
+        } else {
+          return '<span class="badge-custom badge-cancelled"><i class="fa fa-times-circle mr-1"></i>Cancelled</span>';
+        }
+      }
+    </script>
+  </body>
+</html>
