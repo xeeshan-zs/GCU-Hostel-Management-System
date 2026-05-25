@@ -327,6 +327,15 @@
         window.location.href = 'dashboard.html';
       }
 
+      // Check if redirected after successful registration
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('registered') === 'true') {
+        const alertBox = document.getElementById('loginAlert');
+        alertBox.className = 'alert alert-success';
+        alertBox.textContent = 'Registration successful! Please sign in with your credentials.';
+        alertBox.classList.remove('d-none');
+      }
+
       // Login form submission handler
       document.getElementById('loginForm').addEventListener('submit', async function(e) {
         e.preventDefault();

@@ -48,6 +48,47 @@ async function runQuery(query, params = []) {
 // API ROUTES
 // -------------------------------------------------------------
 
+// 0. API: Student Registration
+app.post('/api/register', async (req, res) => {
+  const { fullName, email, password, phone, gender, age } = req.body;
+
+  if (!fullName || !email || !password) {
+    return res.status(400).json({ success: false, message: 'Full name, email, and password are required.' });
+  }
+
+  try {
+    // Check if email already exists
+    const emailCheckQuery = 'SELECT UserId FROM Users WHERE Email = @email';
+    const emailCheckParams = [{ name: 'email', type: sql.VarChar(100), value: email }];
+    const checkResult = await runQuery(emailCheckQuery, emailCheckParams);
+
+    if (checkResult.recordset.length > 0) {
+      return res.status(400).json({ success: false, message: 'Email is already registered.' });
+    }
+
+    // Insert user into database with RoleId = 3 (Student)
+    const insertQuery = `
+      INSERT INTO Users (FullName, Email, Password, RoleId, Phone, Gender, Age)
+      VALUES (@fullName, @email, @password, 3, @phone, @gender, @age)
+    `;
+    const insertParams = [
+      { name: 'fullName', type: sql.VarChar(100), value: fullName },
+      { name: 'email', type: sql.VarChar(100), value: email },
+      { name: 'password', type: sql.VarChar(255), value: password },
+      { name: 'phone', type: sql.VarChar(20), value: phone || null },
+      { name: 'gender', type: sql.VarChar(10), value: gender || null },
+      { name: 'age', type: sql.Int, value: age ? parseInt(age) : null }
+    ];
+
+    await runQuery(insertQuery, insertParams);
+
+    return res.json({ success: true, message: 'User registered successfully!' });
+  } catch (err) {
+    console.error('Registration server error:', err);
+    return res.status(500).json({ success: false, message: 'Server database connection error.' });
+  }
+});
+
 // 1. API: Login
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;

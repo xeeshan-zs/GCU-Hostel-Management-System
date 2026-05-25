@@ -90,83 +90,68 @@
         <div class="row">
           <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
             
-            <form action="#" method="post" class="bg-white p-md-5 p-4 mb-5 border">
-              <!--
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <label for="name">Name</label>
-                  <input type="text" id="name" class="form-control ">
-                </div>
-                <div class="col-md-6 form-group">
-                  <label for="phone">Phone</label>
-                  <input type="text" id="phone" class="form-control ">
-                </div>
-              </div>
-              -->
+            <form id="registrationForm" action="#" method="post" class="bg-white p-md-5 p-4 mb-5 border">
+              
+              <div id="registrationAlert" class="alert d-none" role="alert"></div>
+
               <div class="row">
                 <div class="col-md-12 form-group">
-                  <label for="email">Full Name</label>
-                  <input type="text" id="email" class="form-control ">
+                  <label for="fullName">Full Name</label>
+                  <input type="text" id="fullName" class="form-control" required>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12 form-group">
                   <label for="email">Email</label>
-                  <input type="email" id="email" class="form-control ">
+                  <input type="email" id="email" class="form-control" required>
                 </div>
               </div>
-              <div class="col-md-6 mb-3 mb-md-0">
-                      <label for="adults" class="font-weight-bold text-black">Gender</label>
-                      <div class="field-icon-wrap">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select name="" id="adults" class="form-control">
-                          <option value="">Boys</option>
-                          <option value="">Girls</option>
-                        </select>
-                      </div>
-                    </div>
-                  <div class="col-md-6 mb-3 mb-md-0">
-                      <label for="children" class="font-weight-bold text-black">Age</label>
-                      <div class="field-icon-wrap">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select name="" id="children" class="form-control">
-                          <option value="">16</option>
-                          <option value="">17</option>
-                          <option value="">18</option>
-                          <option value="">19</option>
-                          <option value="">20</option>
-                          <option value="">21</option>
-                          <option value="">22</option>
-                          <option value="">23</option>
-                          <option value="">24</option>
-                          <option value="">25</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="row">
-                <div class="col-md-12 form-group">
-                  <label for="email">Mobile Number</label>
-                  <input type="text" id="email" class="form-control ">
+              <div class="row mb-3">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label for="gender" class="font-weight-bold text-black">Gender</label>
+                  <div class="field-icon-wrap">
+                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                    <select id="gender" class="form-control" required>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <!--
-              <div class="row mb-4">
-                <div class="col-md-12 form-group">
-                  <label for="message">Write Message</label>
-                  <textarea name="message" id="message" class="form-control " cols="30" rows="8"></textarea>
-                </div>
-              </div>
-            -->
-              <div class="row">
-                <div class="col-md-12 form-group">
-                  <label for="email">Password</label>
-                  <input type="password" id="email" class="form-control ">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label for="age" class="font-weight-bold text-black">Age</label>
+                  <div class="field-icon-wrap">
+                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                    <select id="age" class="form-control" required>
+                      <option value="16">16</option>
+                      <option value="17">17</option>
+                      <option value="18">18</option>
+                      <option value="19">19</option>
+                      <option value="20" selected>20</option>
+                      <option value="21">21</option>
+                      <option value="22">22</option>
+                      <option value="23">23</option>
+                      <option value="24">24</option>
+                      <option value="25">25</option>
+                    </select>
+                  </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12 form-group">
-                  <label for="email">Confirm Password</label>
-                  <input type="password" id="email" class="form-control ">
+                  <label for="phone">Mobile Number</label>
+                  <input type="text" id="phone" class="form-control" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 form-group">
+                  <label for="password">Password</label>
+                  <input type="password" id="password" class="form-control" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 form-group">
+                  <label for="confirmPassword">Confirm Password</label>
+                  <input type="password" id="confirmPassword" class="form-control" required>
                 </div>
               </div>
               <div class="row">
@@ -357,5 +342,96 @@
     
 
     <script src="js/main.js"></script>
+
+    <script>
+      // Helper to read and parse user cookie
+      function getUserFromCookie() {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; user=`);
+        if (parts.length === 2) {
+          try {
+            return JSON.parse(decodeURIComponent(parts.pop().split(';').shift()));
+          } catch(e) {
+            return null;
+          }
+        }
+        return null;
+      }
+
+      // Check if user is already logged in and redirect
+      const currentUser = getUserFromCookie();
+      if (currentUser) {
+        window.location.href = 'dashboard.html';
+      }
+
+      // Registration form submission handler
+      document.getElementById('registrationForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const fullName = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const gender = document.getElementById('gender').value;
+        const age = document.getElementById('age').value;
+        const phone = document.getElementById('phone').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const alertBox = document.getElementById('registrationAlert');
+
+        // Client-side validations
+        if (password !== confirmPassword) {
+          alertBox.className = 'alert alert-danger';
+          alertBox.textContent = 'Passwords do not match!';
+          alertBox.classList.remove('d-none');
+          // Scroll to alert
+          alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+
+        if (password.length < 6) {
+          alertBox.className = 'alert alert-danger';
+          alertBox.textContent = 'Password must be at least 6 characters long.';
+          alertBox.classList.remove('d-none');
+          alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+
+        // Reset alert
+        alertBox.className = 'alert alert-info';
+        alertBox.textContent = 'Creating your account... Please wait.';
+        alertBox.classList.remove('d-none');
+        alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        try {
+          const response = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ fullName, email, gender, age, phone, password })
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            alertBox.className = 'alert alert-success';
+            alertBox.textContent = 'Registration successful! Redirecting to login page...';
+            alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            setTimeout(() => {
+              window.location.href = 'login.html?registered=true';
+            }, 1500);
+          } else {
+            alertBox.className = 'alert alert-danger';
+            alertBox.textContent = data.message || 'Registration failed. Please try again.';
+            alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        } catch (error) {
+          console.error('Registration error:', error);
+          alertBox.className = 'alert alert-danger';
+          alertBox.textContent = 'A server or network error occurred. Please try again later.';
+          alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    </script>
   </body>
 </html>
